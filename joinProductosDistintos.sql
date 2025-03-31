@@ -5,7 +5,7 @@ SELECT * FROM classicmodels.orderdetails;
 
 -- cuantos productos distintos ha vendido cada empleado
 
-select distinct count(oD.productCode) productosDistintos, e.firstName, e.lastName
+select count(distinct oD.productCode) productosDistintos, e.firstName, e.lastName
 from orderdetails oD
 join orders o
 on oD.orderNumber = o.orderNumber
@@ -13,12 +13,12 @@ join customers c
 on o.customerNumber = c.customerNumber
 join employees e
 on c.salesRepEmployeeNumber = e.employeeNumber
-group by e.firstName, e.lastName
+group by c.salesRepEmployeeNumber
 order by productosDistintos desc
 ;
 
 -- con venta totalVendidos
-select distinct count(oD.productCode) productosDistintos, e.employeeNumber, e.firstName, e.lastName, sum(oD.quantityOrdered) totalVendidosProd
+select count(distinct oD.productCode) productosDistintos, e.employeeNumber, e.firstName, e.lastName, sum(oD.quantityOrdered) totalVendidosProd
 from orderdetails oD
 join orders o
 on oD.orderNumber = o.orderNumber
