@@ -26,7 +26,7 @@ FROM
     FROM
         payments
     WHERE
-        YEAR(paymentDate) = 2005) tablaMedia, -- quizás sea un poco redundante poner otra vez year aqui. preguntar a santi
+        YEAR(paymentDate) = 2005) tablaMedia,
     (SELECT 
         e.email, SUM(p.amount) sumaTotalVentas
     FROM
